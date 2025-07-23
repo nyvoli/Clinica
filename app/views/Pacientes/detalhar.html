@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'Perfil do paciente' /}
+
+<body class=body>
+<container>
+<div class="cont-det">
+
+<p class="listagem">Paciente: ${paciente.nome}</p>
+<p class="listagem" id="cpfFormatado">CPF: ${paciente.cpf}</p>
+<p class="listagem">Data de nascimento: ${paciente.dataNascimento.format('dd/MM/yyyy')}</p>
+<p class="listagem" id="telefoneFormatado">Telefone: ${paciente.telefone}</p>
+<p class="listagem">Convênio: ${paciente.convenio}</p>
+
+<hr><br>
+
+<a class="bot-novo" href="@{Pacientes.form}">Cadastrar novo</a>
+<br>
+<a class="bot-novo" href="@{Pacientes.editar(paciente.id)}">Editar Paciente</a>
+
+</div>
+
+</body>

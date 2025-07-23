@@ -1,0 +1,27 @@
+#{extends 'main.html' /}
+#{set title:'Lista de Pacientes' /}
+
+
+<h1>Pacientes Cadastrados</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome do Paciente</th>
+            <th>telefone</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{list items:listaDePacientes, as:'paciente'}
+            <tr>
+                <td>${paciente.id}</td>
+                <td>${paciente.nome}</td>
+                <td>${paciente.telefone}</td>
+            </tr>
+        #{/list}
+    </tbody>
+</table>
+
+<br>
+<button onclick="location.href='/'">Voltar</button>
