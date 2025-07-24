@@ -1,6 +1,8 @@
 package models;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Column;
@@ -24,4 +26,6 @@ public class Paciente extends Model{
 	public Paciente() {
 		this.status = Status.ATIVO;
 	}
+	@OneToMany
+	public List<Consulta> consultas;
 }
