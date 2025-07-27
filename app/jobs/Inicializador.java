@@ -1,12 +1,13 @@
 package jobs;
 
 import models.Consulta;
+import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 
 @OnApplicationStart
-public class Inicializador {
+public class Inicializador extends Job{
 
-	public void doJOb() {
+	public void doJob() {
 		if (Consulta.count() == 0) {
 			Consulta consulta1 = new Consulta("Pediatria", "Maria Clara Teixeira", "01 de agosto de 2025, às 10:00h" );
 			Consulta consulta2 = new Consulta("Pediatria", "Maria Clara Teixeira", "01 de agosto de 2025, às 11:00h" );
