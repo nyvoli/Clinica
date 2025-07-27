@@ -3,6 +3,8 @@ package models;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -14,10 +16,13 @@ public class Consulta extends Model{
 	public String especialidade;
 	public String medico;
 	public String data;
+	@Enumerated(EnumType.STRING)
+	public Status status;
 	
 	public Consulta(String especialidade, String medico, String data) {
 		this.especialidade = especialidade;
 		this.medico = medico;
 		this.data = data;
+		this.status = status.ATIVO;
 	}
 }

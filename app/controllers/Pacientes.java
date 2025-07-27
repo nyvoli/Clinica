@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 import models.Status;
+import models.Consulta;
 import models.Paciente;
 import play.mvc.Controller;
 
@@ -13,8 +14,10 @@ public class Pacientes extends Controller {
 	}
 	
 	public static void salvar(Paciente paciente) {
+		//para verificar se já há algum paciente com esse CPF no banco de dados
 	    Paciente cpfExiste = Paciente.find("byCpf", paciente.cpf).first();
 
+	    //não aceita campos vazios
 	    if (isEmpty(paciente.nome) || isEmpty(paciente.telefone) || (paciente.dataNascimento == null)
 	        || isEmpty(paciente.cpf) || isEmpty(paciente.convenio)) {
 	        flash.error("Todos os campos devem ser preenchidos");
@@ -33,7 +36,10 @@ public class Pacientes extends Controller {
 	        flash.error("Já existe um paciente cadastrado com este CPF");
 	        form(paciente);
 
-	    } else {
+	    } else //se o cpf não existe ainda 
+	    	{
+	    	//esse if está sendo usado pois a aplicação não aceita cpf
+	    	//repetido, mas caso contrário, não precisaria ser usada
 	        if (paciente.id != null) {
 	            // se for edição de paciente
 	            Paciente existente = Paciente.findById(paciente.id);
@@ -44,11 +50,11 @@ public class Pacientes extends Controller {
 	            existente.convenio = paciente.convenio;
 	            existente.status = paciente.status;
 	            existente.save();
-	            detalhar(existente.id);
+	            detalhar(existente.id, null);
 	        } else {
 	            // se for paciente novo
 	            paciente.save();
-	            detalhar(paciente.id);
+	            detalhar(paciente.id, null);
 	        }}}
 
     
@@ -57,15 +63,23 @@ public class Pacientes extends Controller {
     	renderTemplate("Pacientes/form.html", paciente);
     }
     
-    public static void detalhar(Long id) {
+    public static void detalhar(Long id, String busca) {
+    	//para buscar as consultas disponíveis no template
         Paciente paciente = Paciente.findById(id);
-    	render(paciente);
+        List<Consulta> consultas = null;
+        if (busca != null && !busca.trim().isEmpty()) {
+		String filtro = "%" + busca.toLowerCase() + "%";
+		consultas = Consulta.find("lower(especialidade) like :filtro" ).bind("filtro", filtro).fetch();
+		}
+    	render(paciente, consultas, busca);
+    	
     }
     
     public static void remover(Long id) {
     	Paciente paciente = Paciente.findById(id);
     	paciente.status = Status.INATIVO;
     	paciente.save();
+    	flash.success("O paciente foi excluído com sucesso");
     	login();
     }
     

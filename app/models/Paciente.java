@@ -1,5 +1,11 @@
 package models;
 
+import javax.persistence.Transient;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,10 +25,22 @@ public class Paciente extends Model{
 	public String convenio;
 	public String telefone;
 	public String cpf;
+	@Transient
+	public Integer idade;
 	
 	@Enumerated(EnumType.STRING)
 	public Status status;
 	
+	//calculo de idade
+	public int getIdade() {
+		if (idade == null) {			
+			LocalDate localDataNascimento = dataNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			LocalDate dataCorrente = LocalDate.now();
+			Period periodo = Period.between(localDataNascimento, dataCorrente);
+			idade = periodo.getYears();			
+		}
+		return idade;
+	}
 	public Paciente() {
 		this.status = Status.ATIVO;
 	}
