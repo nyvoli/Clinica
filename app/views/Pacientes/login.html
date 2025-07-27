@@ -1,8 +1,8 @@
 #{extends 'main.html' /}
-#{set title:'Cadastro de Paciente' /}
+#{set title:'Localização de Paciente' /}
 
 <form action="@{Pacientes.verificacao}" method="POST">
-    <label for="cpf">Informe seu CPF:</label>
+    <label for="cpf">Informe o CPF:</label>
     <input type="text" name="cpf" maxlength="11" placeholder="Apenas números">
     <button type="submit">Entrar</button>
 </form>

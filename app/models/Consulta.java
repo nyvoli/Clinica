@@ -13,6 +13,11 @@ public class Consulta extends Model{
 
 	public String especialidade;
 	public String medico;
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date data;
+	public String data;
+	
+	public Consulta(String especialidade, String medico, String data) {
+		this.especialidade = especialidade;
+		this.medico = medico;
+		this.data = data;
+	}
 }
