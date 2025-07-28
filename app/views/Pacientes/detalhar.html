@@ -19,8 +19,28 @@
   </div>
 
   <hr>
+  <h5>Consultas Agendadas</h5>
+  <ul>
+      #{list items:paciente.consultas, as:'consulta'}
+        <li>
+          <form action="@{Consultas.remover}" method="GET">
+            <input type="hidden" name="consultaId" value="${consulta.id}">
+			<input type="hidden" name="pacienteId" value="${paciente.id}">
+            Especialidade: ${consulta.especialidade} <br>
+            Médico: ${consulta.medico} <br>
+            Data: ${consulta.data} <br>
+            <input type="submit" value="Desmarcar Consulta"/>
+			<hr>
+          </form>
+        </li>
+      #{/list}
+    #{else}
+      <li>O paciente ainda não agendou nenhuma consulta</li>
+    #{/else}
+  </ul>
 
-  <h5>Buscar por especialidades</h5>
+<br> <br>
+  <h4>Buscar por especialidades</h4>
   <br>
   <form action="@{Pacientes.detalhar}" method="GET">
     <input type="hidden" name="id" value="${paciente.id}" />
@@ -35,9 +55,13 @@
     #{if consultas != null && !consultas.isEmpty()}
       #{list items:consultas, as:'consulta'}
         <li>
+		  <form action="@{Consultas.salvar}" method="post">
+		  <input type="hidden" name="pacienteId" value="${paciente.id}">
+		  <input type="hidden" name="consultaId" value="${consulta.id}">
           Especialidade: ${consulta.especialidade} <br>
           Médico: ${consulta.medico} <br>
-          Data: ${consulta.data}
+          Data: ${consulta.data}<br>
+		  <input type="submit" value="Agendar Consulta"/>
           <hr>
         </li>
       #{/list}

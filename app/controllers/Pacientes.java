@@ -68,11 +68,10 @@ public class Pacientes extends Controller {
         Paciente paciente = Paciente.findById(id);
         List<Consulta> consultas = null;
         if (busca != null && !busca.trim().isEmpty()) {
-		String filtro = "%" + busca.toLowerCase() + "%";
-		consultas = Consulta.find("lower(especialidade) like :filtro" ).bind("filtro", filtro).fetch();
-		}
-    	render(paciente, consultas, busca);
-    	
+    		String filtro = "%" + busca.toLowerCase() + "%";
+    		consultas = Consulta.find("lower(especialidade) like :filtro and status != :statusInativo" ).bind("filtro", filtro).bind("statusInativo", Status.INATIVO).fetch();
+    		}
+        render(paciente, consultas, busca);
     }
     
     public static void remover(Long id) {
