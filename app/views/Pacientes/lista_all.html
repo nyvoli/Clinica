@@ -1,29 +1,31 @@
 #{extends 'main.html' /}
-#{set title:'Lista de Pacientes' /}
+#{set title:'CNM - Lista de Pacientes' /}
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/lista_all.css'}">
 
+<body class="body">
+<div class="pacientes-container">
+  <h1>Pacientes Cadastrados</h1>
+  <p class="pacientes-info">Total De: ${pacientes?.size()}</p>
 
-<h1>Pacientes Cadastrados</h1>
-<p>Total De: ${pacientes?.size()}</p>
-<br>
-<br>
-<table border="1">
+  <table class="tabela-pacientes">
     <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome do Paciente</th>
-            <th>Telefone</th>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>Nome do Paciente</th>
+        <th>Telefone</th>
+      </tr>
     </thead>
     <tbody>
-        #{list items:pacientes, as:'paciente'}
-            <tr>
-                <td>${paciente.id}</td>
-                <td>${paciente.nome}</td>
-                <td>${paciente.telefone}</td>
-            </tr>
-        #{/list}
+      #{list items:pacientes, as:'paciente'}
+        <tr>
+          <td>${paciente.id}</td>
+          <td>${paciente.nome}</td>
+          <td>${paciente.telefone}</td>
+        </tr>
+      #{/list}
     </tbody>
-</table>
+  </table>
 
-<br>
-<button onclick="location.href='/'">Voltar</button>
+  <button class="btn-voltar" onclick="location.href='/'">Voltar</button>
+</div>
+</body>
