@@ -11,10 +11,17 @@
     </head>
     <body>
 	<div class="container">
-		<p>
-			${flash.error}
-			${flash.sucess}
-		</p>
+		#{if flash.error}
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  ${flash.error} 
+		</div>
+		#{/if}
+
+		#{if flash.success}
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+  ${flash.success} 
+  		</div>
+		#{/if}
 		
 		<h1 class="cads">#{get 'title' /}</h1>
 		<hr>
