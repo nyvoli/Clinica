@@ -24,7 +24,7 @@
 	  <br>
 	  
       <label for="exampleInput">Data de Nascimento:</label>
-      <input type="Date" class="form-control" name="paciente.dataNascimento" value="${paciente?.dataNascimento}">
+      <input type="Date" class="form-control" name="paciente.dataNascimento" value="${paciente?.dataNascimento.format'(yyyy-MM-dd)'}">
       <br>
 
 	  <label for="exampleInput">Número de Telefone</label>
