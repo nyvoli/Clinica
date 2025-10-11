@@ -1,8 +1,21 @@
 #{extends 'main.html' /}
-#{set title:'Localização de Paciente' /}
+#{set title:'CNM - Localização de Paciente' /}
 
+<body class="body">
+    <div class="cont-det">
 <form action="@{Pacientes.verificacao}" method="POST">
+    <h1 class="cads">Localize o paciente</h1>
+    <hr>
+    <br>
     <label for="cpf">Informe o CPF do paciente:</label>
-    <input type="text" name="cpf" maxlength="11" placeholder="Apenas números">
-    <button type="submit">Entrar</button>
+    <br>
+    <input type="text" class="form-control" name="cpf" maxlength="11" placeholder="Apenas números">
+<br>
+    <button type="submit" class="botao">Entrar</button>
+    <br><br>
+    <hr>
 </form>
+</div>
+</body>
+
+

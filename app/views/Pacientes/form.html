@@ -1,26 +1,27 @@
 #{extends 'main.html' /}
 
 #{if paciente}
-#{set title:'Edição de paciente' /}
+#{set title:'CNM - Edição de paciente' /}
 #{/if}
 #{else}
-#{set title:'Cadastro de paciente' /}
+#{set title:'CNM - Cadastro de paciente' /}
 #{/else}
 <body class="body">
-<container>
-<div class="form-group">
-    
+
+<div class="cont-det">
+    <br><br>
+	<h1 class="cads">Preencha a ficha:</h1>
+	<hr>
     <form action="/pacientes/salvar">
 	<input type="hidden" name="paciente.id" value="${paciente?.id}" />
 
       <label for="exampleInput">Nome:</label>
       <input type="text" class="form-control" value="${paciente?.nome}" name="paciente.nome" placeholder="Seu nome">
-      <br><br>
-	  
+      <br>
 	  
 	  <label for="exampleInput">CPF:</label>
 	  <input type="text" name="paciente.cpf" class="form-control" value="${paciente?.cpf}" maxlength="11"  placeholder="Seu CPF (apenas dígitos)">
-	  <br><br>
+	  <br>
 	  
       <label for="exampleInput">Data de Nascimento:</label>
       <input type="Date" class="form-control" name="paciente.dataNascimento" value="${paciente?.dataNascimento>
@@ -28,9 +29,13 @@
 	 
 	  
 	  
+
+      <input type="Date" class="form-control" name="paciente.dataNascimento" value="${paciente?.dataNascimento}">
+      <br>
+
 	  <label for="exampleInput">Número de Telefone</label>
       <input type="text" class="form-control" maxlength="11" value="${paciente?.telefone}" name="paciente.telefone" placeholder="Número de telefone (apenas dígitos)">
-	  <br><br>
+	  <br>
 		
 		
       <label>Convênio:</label>
@@ -40,7 +45,6 @@
 	  <option value="Particular" ${paciente?.convenio == 'Particular' ? 'selected' : ''}>Particular</option>
 	  </select>
 
-	  <br><br>
 	  <br>
  	  <input type="submit" value="Cadastrar" class="botao">
 	  
@@ -48,3 +52,4 @@
 </form>
 </div>
 </body>
+

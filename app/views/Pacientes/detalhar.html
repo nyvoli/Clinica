@@ -1,74 +1,77 @@
 #{extends 'main.html' /}
-#{set title:'Perfil do paciente' /}
+#{set title:'CNM - Perfil do paciente' /}
+ <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/detalhar.css'}">
 
 <body class="body">
-<div class="container">
-  <div class="cont-det">
-    <p class="listagem">Paciente: ${paciente.nome}</p>
-    <p class="listagem" id="cpfFormatado">CPF: ${paciente.cpf}</p>
-    <p class="listagem">Data de nascimento: ${paciente.dataNascimento.format('dd/MM/yyyy')}</p>
-    <p class="listagem">Idade: ${paciente.idade}</p>
-    <p class="listagem" id="telefoneFormatado">Telefone: ${paciente.telefone}</p>
-    <p class="listagem">Convênio: ${paciente.convenio}</p>
+  <div class="layout">
 
-    <hr><br>
+    <div class="coluna">
+      <h4>Consultas Agendadas</h4>
+      <ul>
+        #{list items:paciente.consultas, as:'consulta'}
+          <li>
+            <form action="@{Consultas.remover}" method="GET">
+              <input type="hidden" name="consultaId" value="${consulta.id}">
+              <input type="hidden" name="pacienteId" value="${paciente.id}">
+              Especialidade: ${consulta.especialidade} <br>
+              Médico: ${consulta.medico} <br>
+              Data: ${consulta.data} <br><br>
+              <input type="submit" value="Desmarcar Consulta" class="botao"/>
+              <hr>
+            </form>
+          </li>
+        #{/list}
+        #{else}
+          <li>O paciente ainda não agendou nenhuma consulta</li>
+        #{/else}
+      </ul>
+    </div>
 
-    <a href="@{Pacientes.form}"><input type="submit" class="botao" value="Cadastrar Novo Paciente"></a><br>
-    <a href="@{Pacientes.editar(paciente.id)}"><input type="submit" value="Editar Paciente"></a><br>
-    <a href="@{Pacientes.remover(paciente.id)}"><input type="submit" value="Excluir Paciente"></a>
-  </div>
+    <div class="coluna">
+      <h4>Ficha do paciente</h4>
+      <hr>
+      <p class="listagem">Paciente: ${paciente.nome}</p>
+      <p class="listagem" id="cpfFormatado">CPF: ${paciente.cpf}</p>
+      <p class="listagem">Data de nascimento: ${paciente.dataNascimento.format('dd/MM/yyyy')}</p>
+      <p class="listagem">Idade: ${paciente.idade}</p>
+      <p class="listagem" id="telefoneFormatado">Telefone: ${paciente.telefone}</p>
+      <p class="listagem">Convênio: ${paciente.convenio}</p>
+      <hr><br>
+      <a href="@{Pacientes.form}"><input type="submit" class="botao" value="Cadastrar Novo Paciente"></a><br><br>
+      <a href="@{Pacientes.editar(paciente.id)}"><input type="submit" class="botao" value="Editar Paciente"></a><br><br>
+      <a href="@{Pacientes.remover(paciente.id)}"><input type="submit" class="botao" value="Excluir Paciente"></a>
+    </div>
 
-  <hr>
-  <h5>Consultas Agendadas</h5>
-  <ul>
-      #{list items:paciente.consultas, as:'consulta'}
-        <li>
-          <form action="@{Consultas.remover}" method="GET">
-            <input type="hidden" name="consultaId" value="${consulta.id}">
-			<input type="hidden" name="pacienteId" value="${paciente.id}">
-            Especialidade: ${consulta.especialidade} <br>
-            Médico: ${consulta.medico} <br>
-            Data: ${consulta.data} <br>
-            <input type="submit" value="Desmarcar Consulta"/>
-			<hr>
-          </form>
-        </li>
-      #{/list}
-    #{else}
-      <li>O paciente ainda não agendou nenhuma consulta</li>
-    #{/else}
-  </ul>
+    <div class="coluna">
+      <h4>Buscar por especialidades</h4>
+      <form action="@{Pacientes.detalhar}" method="GET">
+        <input type="hidden" name="id" value="${paciente.id}" />
+        <input type="text" name="busca" value="${busca}" class="form-control" placeholder="Digite a especialidade" />
+        <button type="submit" class="botao">Buscar Consultas</button> <br><br>
+      </form>
 
-<br> <br>
-  <h4>Buscar por especialidades</h4>
-  <br>
-  <form action="@{Pacientes.detalhar}" method="GET">
-    <input type="hidden" name="id" value="${paciente.id}" />
-    <input type="text" name="busca" value="${busca}" placeholder="Digite a especialidade" /> <br>
-    <button type="submit">Buscar Consultas</button>
-  </form>
-
-
-  <h5>Consultas disponíveis:</h5>
-
-  <ul>
-    #{if consultas != null && !consultas.isEmpty()}
-      #{list items:consultas, as:'consulta'}
-        <li>
-		  <form action="@{Consultas.salvar}" method="post">
-		  <input type="hidden" name="pacienteId" value="${paciente.id}">
-		  <input type="hidden" name="consultaId" value="${consulta.id}">
-          Especialidade: ${consulta.especialidade} <br>
-          Médico: ${consulta.medico} <br>
-          Data: ${consulta.data}<br>
-		  <input type="submit" value="Agendar Consulta"/>
+      <h5>Consultas disponíveis:</h5>
+      <ul>
+        #{if consultas != null && !consultas.isEmpty()}
+          #{list items:consultas, as:'consulta'}
+            <li>
+              <form action="@{Consultas.salvar}" method="post">
+                <input type="hidden" name="pacienteId" value="${paciente.id}">
+                <input type="hidden" name="consultaId" value="${consulta.id}">
+                Especialidade: ${consulta.especialidade} <br>
+                Médico: ${consulta.medico} <br>
+                Data: ${consulta.data}<br>
+                <input type="submit" value="Agendar Consulta" class="botao"/>
+              </form>
+              <hr>
+            </li>
+          #{/list}
+        #{/if}
+        #{else}
+          <li>Ainda não há nenhuma consulta aqui</li>
           <hr>
-        </li>
-      #{/list}
-	  #{/if}
-    #{else}
-      <li>Ainda não há nenhuma consulta aqui</li>
-	#{/else}
-  </ul>
-</div>
+        #{/else}
+      </ul>
+    </div>
+  </div>
 </body>
