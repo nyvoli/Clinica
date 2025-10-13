@@ -39,4 +39,11 @@ public class Logins extends Controller {
 			Administradores.index();
 		}
 	}
+	
+	
+	public static void logout() {
+		session.clear();
+		flash.success("Você saiu do sistema");
+		Application.index();
+	}
 }

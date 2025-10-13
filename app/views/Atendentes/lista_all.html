@@ -1,11 +1,11 @@
 #{extends 'main.html' /}
-#{set title:'CNM - Lista de Pacientes' /}
+#{set title:'CNM Medical Center' /}
 <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/lista_all.css'}">
 
 <body class="body">
 <div class="pacientes-container">
   <h1>Pacientes Cadastrados</h1>
-  <p class="pacientes-info">Total De: ${pacientes?.size()}</p>
+  <p class="pacientes-info">Exibindo total de: ${pacientes?.size()} pacientes</p>
 
   <table class="tabela-pacientes">
     <thead>
