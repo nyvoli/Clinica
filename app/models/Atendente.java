@@ -22,6 +22,6 @@ public class Atendente extends Model{
 		this.senha = senha;
 		this.tipo = Tipo.ATENDENTE;
 	}
-	
+
 	
 }

@@ -8,4 +8,5 @@ public class Atendentes extends Controller {
 	public static void index() {
 		render();
 	}
+	
 }

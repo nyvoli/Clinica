@@ -7,4 +7,5 @@ public class Administradores extends Controller{
 	public static void index() {
 		render();
 	}
+	
 }

@@ -22,4 +22,5 @@ public class Administrador extends Model {
 		this.tipo = Tipo.ADMINISTRADOR;
 	}
 
+	
 }

@@ -65,6 +65,7 @@ public class Pacientes extends Controller {
     	login();
     }
     
+    
     public static void verificacao(String cpf) {
         Paciente paciente = Paciente.find("byCpf", cpf).first();
 
@@ -78,6 +79,7 @@ public class Pacientes extends Controller {
         }
     }
 
+    
     public static void login() {
         render();
     }

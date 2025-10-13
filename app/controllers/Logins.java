@@ -10,7 +10,7 @@ public class Logins extends Controller {
 	public static void login() {
 		render();
 	}
-	
+
 	public static void logar(String email, String senha) {
 		Atendente atendenteExist = Atendente.find("email = ?1 and senha = ?2", email, senha).first();
 		Administrador admExist = Administrador.find("email = ?1 and senha = ?2", email, senha).first();
