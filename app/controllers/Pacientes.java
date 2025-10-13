@@ -5,7 +5,7 @@ import models.Status;
 import models.Consulta;
 import models.Paciente;
 import play.mvc.Controller;
-
+import controllers.*;
 public class Pacientes extends Controller {
 
 	
@@ -62,7 +62,7 @@ public class Pacientes extends Controller {
     	paciente.status = Status.INATIVO;
     	paciente.save();
     	flash.success("O paciente foi excluído com sucesso");
-    	login();
+    	Atendentes.menu(null);
     }
     
     
@@ -73,21 +73,14 @@ public class Pacientes extends Controller {
             renderTemplate("Pacientes/form.html");
         } else if (paciente.status == Status.INATIVO) {
             flash.error("Este paciente está desativado");
-            login();
+            Atendentes.menu(null);
         } else {
             renderTemplate("Pacientes/detalhar.html", paciente);
         }
     }
 
     
-    public static void login() {
-        render();
-    }
-    
-    public static void lista_all(){
-        List<Paciente> pacientes = Paciente.findAll();
-        render(pacientes);
-    }
+
 
     private static boolean isEmpty(String value){
         return value == null || value.trim().isEmpty();

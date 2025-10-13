@@ -1,0 +1,65 @@
+#{extends 'main.html' /}
+#{set title:'CNM - Localização de Paciente' /}
+
+<body class="body">
+    <div class="cont-det">
+    
+    
+    <!-- Buscar por pacientes -->
+	<form action="@{Pacientes.verificacao}" method="POST">
+    <h3 class="cads">Localize o paciente</h3>
+<hr>
+    <label for="cpf">Informe o CPF do paciente:</label>
+<br>
+    <input type="text" class="form-control" name="cpf" maxlength="11" placeholder="Apenas números">
+<br>
+    <button type="submit" class="botao">Buscar Paciente</button>
+<br>
+<br>
+<hr>
+    </form>
+    
+    <!-- Buscar por consultas -->
+    <form action="@{Atendentes.menu}">
+     <h3 class="cads">Ver consultas disponíveis</h3>
+<hr>
+    <label for="cpf">Buscar por nome ou especialidade</label>
+<br>
+    <input type="text" class="form-control" name="busca" maxlength="11" placeholder="Digite aqui">
+<br>
+    <button type="submit" class="botao">Exibir Consultas</button>
+    
+    <!-- Lógica do BUSCAR -->
+<ul>
+     #{if consultas != null && !consultas.isEmpty()}
+     <h3 class="cads">Consultas Disponíveis:</h3>
+     #{list items:consultas, as:'consulta'}
+	<li>
+      Especialidade: ${consulta.especialidade} <br>
+      Médico: ${consulta.medico} <br>
+      Data: ${consulta.data}<br>
+<hr>
+    </li>
+	#{/list}
+     #{/if}
+</form>
+<hr>
+    <!-- Ver todos os pacientes cadastrados -->
+	<form action="@{Atendentes.lista_all}">
+		<h3 class="cads">Ver pacientes cadastrados</h3>
+<hr>
+		<button type="submit" class="botao">Exibir Pacientes</button>
+	</form>
+<hr>
+
+    <!-- Cadastrar paciente novo -->
+    <form action="@{Pacientes.form}">
+   		<h3 class="cads">Cadastrar Paciente</h3>
+<hr>
+		<button type="submit" class="botao">Cadastrar</button>
+	</form>
+	
+</div>
+</body>
+
+
