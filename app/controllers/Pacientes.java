@@ -22,40 +22,23 @@ public class Pacientes extends Controller {
 	        || isEmpty(paciente.cpf) || isEmpty(paciente.convenio)) {
 	        flash.error("Todos os campos devem ser preenchidos");
 	        form(paciente);
-
+	    //telefone precisa ser válido
 	    } else if (paciente.telefone.length() < 11) {
 	        flash.error("Insira um telefone válido");
 	        form(paciente);
-
+	    //cpf precisa ser válido
 	    } else if (paciente.cpf.length() < 11) {
 	        flash.error("Insira um CPF válido");
 	        form(paciente);
-
+	    // verifica se o cpf pertence a outro paciente
 	    } else if (cpfExiste != null && (paciente.id == null || !cpfExiste.id.equals(paciente.id))) {
-	        // verifica se o cpf pertence a outro paciente
 	        flash.error("Já existe um paciente cadastrado com este CPF");
 	        form(paciente);
-
-	    } else //se o cpf não existe ainda 
-	    	{
-	    	//esse if está sendo usado pois a aplicação não aceita cpf
-	    	//repetido, mas caso contrário, não precisaria ser usada
-	        if (paciente.id != null) {
-	            // se for edição de paciente
-	            Paciente existente = Paciente.findById(paciente.id);
-	            existente.nome = paciente.nome;
-	            existente.telefone = paciente.telefone;
-	            existente.dataNascimento = paciente.dataNascimento;
-	            existente.cpf = paciente.cpf;
-	            existente.convenio = paciente.convenio;
-	            existente.status = paciente.status;
-	            existente.save();
-	            detalhar(existente.id, null);
-	        } else {
-	            // se for paciente novo
+	    // se nenhum dos casos, está tudo certo
+	    } else{
 	            paciente.save();
 	            detalhar(paciente.id, null);
-	        }}}
+	        }};
 
     
     public static void editar(Long id) {

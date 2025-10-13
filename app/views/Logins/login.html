@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+
+#{set title:'Entrar como Atendente ou Administrador' /}
+<body class="body">
+
+<div class="cont-det">
+    <br><br>
+	<h1 class="cads">Preencha a ficha:</h1>
+	<hr>
+    <form action="/logins/logar" method="post">
+
+      <label for="exampleInput">Email:</label>
+      <input type="text" class="form-control" name="email" placeholder="Email">
+      <br>
+	  
+	  <label for="exampleInput">Senha:</label>
+	  <input type="password" name="senha" class="form-control" placeholder="Senha">
+	  <br>
+	  
+ 	  <input type="submit" value="Entrar" class="botao">
+	  
+	  
+</form>
+</div>
+</body>
+
