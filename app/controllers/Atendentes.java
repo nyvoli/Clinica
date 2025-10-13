@@ -10,19 +10,17 @@ import play.mvc.Controller;
 public class Atendentes extends Controller {
 
 	
-	public static void index() {
-		render();
-	}
-	
+	//menu dos atendentes com lógica da busca
     public static void menu(String busca) {
     	List<Consulta> consultas = null;
 	    if (busca != null && !busca.trim().isEmpty()) {
 			String filtro = "%" + busca.toLowerCase() + "%";
-			consultas = Consulta.find("lower(especialidade) like :filtro and status != :statusInativo" ).bind("filtro", filtro).bind("statusInativo", Status.INATIVO).fetch();
+			consultas = Consulta.find("lower(especialidade) like :filtro and status != :statusInativo" )
+					.bind("filtro", filtro).bind("statusInativo", Status.INATIVO).fetch();
 			}
-    	
         render(busca, consultas); }
     
+    //listar todos os pacientes cadastrados
     public static void lista_all(){
         List<Paciente> pacientes = Paciente.findAll();
         render(pacientes);

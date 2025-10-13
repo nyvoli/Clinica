@@ -46,6 +46,7 @@ public class Pacientes extends Controller {
     	renderTemplate("Pacientes/form.html", paciente);
     }
     
+    
     public static void detalhar(Long id, String busca) {
     	//para buscar as consultas disponíveis no template
         Paciente paciente = Paciente.findById(id);
@@ -57,24 +58,47 @@ public class Pacientes extends Controller {
         render(paciente, consultas, busca);
     }
     
+    
     public static void remover(Long id) {
     	Paciente paciente = Paciente.findById(id);
-    	paciente.status = Status.INATIVO;
-    	paciente.save();
-    	flash.success("O paciente foi excluído com sucesso");
-    	Atendentes.menu(null);
+    	List<Consulta> consultas = paciente.consultas;
+
+    	if(consultas == null) {
+    		paciente.status = Status.INATIVO;
+        	paciente.save();
+        	flash.success("O paciente foi excluído com sucesso");
+        	Atendentes.menu(null);
+    	} else if (consultas != null) {
+    		for(int i = 0; i < consultas.size(); i++) {
+    		Consulta consulta = consultas.get(i);
+    		consulta.status = Status.ATIVO;
+    		consulta.paciente = null;
+    		paciente.consultas.remove(consulta);
+    		paciente.status = Status.INATIVO;
+    		consulta.save();
+    		paciente.save();
+    		}
+    		flash.success("O paciente foi excluído com sucesso");
+    		renderTemplate("Atendentes/menu.html");
+    	}
     }
     
     
     public static void verificacao(String cpf) {
+    	
         Paciente paciente = Paciente.find("byCpf", cpf).first();
 
+        while (cpf.length() < 11) { 
+        	flash.error("CPF inválido");
+        	Atendentes.menu(null);}
+        
         if (paciente == null) {
             renderTemplate("Pacientes/form.html");
         } else if (paciente.status == Status.INATIVO) {
             flash.error("Este paciente está desativado");
             Atendentes.menu(null);
-        } else {
+        }
+        else {
             renderTemplate("Pacientes/detalhar.html", paciente);
         }
     }

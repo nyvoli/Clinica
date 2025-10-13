@@ -1,8 +1,11 @@
 #{extends 'main.html' /}
-#{set title:'CNM - Localização de Paciente' /}
+#{set title:'CNM - Menu' /}
 
 <body class="body">
-    <div class="cont-det">
+<div class="layout">
+<h4 class="cads">Olá, ${session['userName']} <t>(${session['cargo']})</t></h4>
+    <hr>
+	<div class="coluna">
     
     
     <!-- Buscar por pacientes -->
@@ -43,6 +46,8 @@
 	#{/list}
      #{/if}
 </form>
+</div>
+<div class="coluna">
 <hr>
     <!-- Ver todos os pacientes cadastrados -->
 	<form action="@{Atendentes.lista_all}">

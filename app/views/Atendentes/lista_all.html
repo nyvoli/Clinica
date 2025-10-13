@@ -10,22 +10,22 @@
   <table class="tabela-pacientes">
     <thead>
       <tr>
-        <th>ID</th>
         <th>Nome do Paciente</th>
         <th>Telefone</th>
+        <th>CPF</th>
       </tr>
     </thead>
     <tbody>
       #{list items:pacientes, as:'paciente'}
         <tr>
-          <td>${paciente.id}</td>
-          <td>${paciente.nome}</td>
+          <td>${paciente.nome} | <a href="@{Pacientes.detalhar(paciente.id)}">Exibir paciente</a></td>
           <td>${paciente.telefone}</td>
+          <td>${paciente.cpf}</td>
         </tr>
       #{/list}
     </tbody>
   </table>
 
-  <button class="btn-voltar" onclick="location.href='/'">Voltar</button>
+  <a href="@{Atendentes.menu}"><button class="btn-voltar">Voltar</button></a>
 </div>
 </body>

@@ -27,7 +27,7 @@ public class Logins extends Controller {
 			session.put("userEmail", atendenteExist.email);
 			session.put("cargo", atendenteExist.tipo);
 			//redireciona para pag inicial dos atendentes
-			Atendentes.index();
+			Atendentes.menu(null);
 		}
 		
 		//se achar adm mas não atendente	
