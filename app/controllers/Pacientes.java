@@ -1,13 +1,16 @@
 package controllers;
 
 import java.util.List;
+
 import models.Status;
 import models.Consulta;
 import models.Paciente;
 import play.mvc.Controller;
+import play.mvc.With;
 import controllers.*;
+@With(Segurança.class)
 public class Pacientes extends Controller {
-
+	
 	
 	public static void form(Paciente paciente) {
 		render(paciente);

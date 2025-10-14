@@ -6,10 +6,12 @@ import models.Consulta;
 import models.Paciente;
 import models.Status;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(SegurançaAtendente.class)
 public class Atendentes extends Controller {
 
-	
+
 	//menu dos atendentes com lógica da busca
     public static void menu(String busca) {
     	List<Consulta> consultas = null;
