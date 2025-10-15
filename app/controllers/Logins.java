@@ -34,9 +34,9 @@ public class Logins extends Controller {
 		 else if (atendenteExist == null && admExist != null) {
 			session.put("userName", admExist.nome);
 			session.put("userEmail", admExist.email);
-			session.put("cargo", admExist.tipo);
+			session.put("cargo", admExist.tipo.name());
 			//redireciona para pag inicial dos administradores
-			Administradores.index();
+			Administradores.menu();
 		}
 	}
 	

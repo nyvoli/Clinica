@@ -5,6 +5,7 @@ import java.util.List;
 import models.Status;
 import models.Consulta;
 import models.Paciente;
+import play.data.validation.Valid;
 import play.mvc.Controller;
 import play.mvc.With;
 import controllers.*;
@@ -42,6 +43,7 @@ public class Pacientes extends Controller {
 	            paciente.save();
 	            detalhar(paciente.id, null);
 	        }};
+
 
     
     public static void editar(Long id) {

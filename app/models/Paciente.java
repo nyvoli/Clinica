@@ -1,6 +1,10 @@
 package models;
 
 import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+
+import net.sf.oval.constraint.MaxSize;
+import net.sf.oval.constraint.MinSize;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -16,6 +20,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import play.data.validation.Min;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 @Entity
 public class Paciente extends Model{
