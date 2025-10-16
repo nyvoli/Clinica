@@ -11,7 +11,6 @@ public class Segurança extends Controller {
 	static void verificarAtendente() {
 		String cargo = session.get("cargo");
 		Atendente annotation = getActionAnnotation(Atendente.class);
-		flash.success(cargo);
 		if(annotation != null && (cargo == null || !cargo.equals("ATENDENTE"))) {
 			flash.error("Você deve estar logado como Atendente para acessar esta página");
 			Logins.login();

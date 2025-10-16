@@ -25,7 +25,7 @@
     </form>
     
     <!-- Buscar por consultas -->
-    <form action="@{Atendentes.menu}">
+    <form action="@{Atendentes.menu}" method="POST">
      <h3 class="cads">Ver consultas disponíveis</h3>
 <hr>
     <label for="cpf">Buscar por nome ou especialidade</label>
@@ -52,7 +52,7 @@
 <div class="coluna">
 <hr>
     <!-- Ver todos os pacientes cadastrados -->
-	<form action="@{Atendentes.lista_all}">
+	<form action="@{Atendentes.lista_all}" method="POST">
 		<h3 class="cads">Ver pacientes cadastrados</h3>
 <hr>
 		<button type="submit" class="botao">Exibir Pacientes</button>
