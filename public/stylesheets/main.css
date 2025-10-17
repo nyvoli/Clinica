@@ -1,0 +1,45 @@
+.body {
+	background-color: #f0eefa;
+}
+
+.cads, .detalhar {
+    color: #6A5ACD;
+}
+
+.botao {
+    background-color: #6A5ACD;
+    color: white;
+    border-radius: 5px;
+    align-content: center;
+    width: 100%;
+    border: none;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.botao:hover {
+  background-color: #5a4bbd;
+}
+
+.form-group, .cont-det {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	/*background-color: #3f367b;*/
+}
+
+.bot-novo {
+    background-color: #6A5ACD;
+    color: white;
+    border-radius: 5px;
+    align-content: center;
+    width: 100%;
+    border: none;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+}

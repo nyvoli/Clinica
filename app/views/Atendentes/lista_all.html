@@ -1,0 +1,33 @@
+#{extends 'main.html' /} #{set title:'CNM Medical Center' /}
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/lista_all.css'}">
+
+<body class="body">
+	<div class="pacientes-container">
+		<h1>Pacientes Cadastrados</h1>
+		<p class="pacientes-info">Exibindo total de: ${pacientes?.size()}
+			pacientes</p>
+
+		<table class="tabela-pacientes">
+			<thead>
+				<tr>
+					<th>Nome do Paciente</th>
+					<th>Telefone</th>
+					<th>CPF</th>
+				</tr>
+			</thead>
+			<tbody>
+				#{list items:pacientes, as:'paciente'}
+				<tr>
+					<td>${paciente.nome} | <a
+						href="@{Pacientes.detalhar(paciente.id)}">Exibir paciente</a></td>
+					<td>${paciente.telefone}</td>
+					<td>${paciente.cpf}</td>
+				</tr>
+				#{/list}
+			</tbody>
+		</table>
+
+		<a href="@{Atendentes.menu}"><button class="btn-voltar">Voltar</button></a>
+	</div>
+</body>
