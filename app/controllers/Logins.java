@@ -36,7 +36,7 @@ public class Logins extends Controller {
 			session.put("userEmail", admExist.email);
 			session.put("cargo", admExist.tipo.name());
 			//redireciona para pag inicial dos administradores
-			Administradores.menu();
+			Administradores.menu(null, null, null);
 		}
 	}
 	

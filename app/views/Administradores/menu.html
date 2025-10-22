@@ -2,16 +2,99 @@
 #{set title:'CNM Medical Center' /}
 
 <body class="body">
-    <div class="cont-det">
-    <container>
-</body>
-<div id="home">
-    <h1 class="cads">Olá, ${session['userName']} <t>${session['cargo']}</t></h1>
+<div class="layout">
+<h4 class="cads">Olá, ${session['userName']} <t>(${session['cargo']})</t> 
+<t><a href="@{Logins.logout}">Sair</a></t>
+</h4>
     <hr>
-    <button onclick="location.href='/Logins/login'" class="botao">Entrar</button>
-    
-</div>
-</div>
-</container>
-</body>
 
+<!-- Buscar Atendentes -->
+	<div class="coluna">
+      <h4>Buscar atendentes</h4>
+      <form action="@{Administradores.menu}" method="GET">
+        <input type="text" name="buscaAtd" value="${buscaAtd}" class="form-control" placeholder="Digite o nome ou e-mail" />
+        <br>
+        <button type="submit" class="botao">Buscar Atendentes</button> <br><br>
+      </form>
+
+      <h5>Atendentes encontrados:</h5>
+      <ul>
+        #{if atendentes != null}
+          #{list items:atendentes, as:'a'}
+            <li>${a.nome} | <a href="@{Atendentes.detalhar(a.id)}">Exibir Atendente</a></li>
+          ${a.email}
+              <hr>
+          #{/list}
+          </ul>
+          #{/if} 
+          #{else}
+          <li>Ainda não há nenhum atendente aqui</li>
+          #{/else}
+          </br>
+          
+         <a href="@{Atendentes.form()}"><button class="botao">Cadastrar Novo</button></a>
+ <!--  -->
+ </div>
+ 
+ 
+ <!-- Buscar Pacientes -->
+	<div class="coluna">
+      <h4>Buscar Pacientes</h4>
+      <form action="@{Administradores.menu}" method="GET">
+        <input type="text" name="buscaPaciente" value="${buscaPaciente}" class="form-control" placeholder="Digite a especialidade ou médico" />
+        <br>
+        <button type="submit" class="botao">Buscar Pacientes</button> <br><br>
+      </form>
+
+      <h5>Pacientes encontrados:</h5>
+      <ul>
+        #{if pacientes != null}
+          #{list items:pacientes, as:'p'}
+            <li>${p.nome} | <a href="@{Pacientes.detalhar(p.id)}">Exibir Paciente</a></li>
+          <li>${p.cpf}</li>
+              </hr>
+          #{/list}
+          </ul>
+          #{/if} #{else}
+          <li>Ainda não há nenhum paciente aqui</li>
+          #{/else}
+          
+          </br>
+	<a href="@{Pacientes.form()}"><button class="botao">Cadastrar Novo</button></a>          
+          </div>
+<!--  -->
+
+
+
+<!-- Buscar Consultas -->
+
+<div class="coluna">
+      <h4>Buscar Consultas</h4>
+      <form action="@{Administradores.menu}">
+        <input type="text" name="buscaConsulta" value="${buscaConsulta}" class="form-control" placeholder="Busque por especialidades" />
+     <br>
+        <button type="submit" class="botao">Buscar Consultas</button> <br><br>
+</form>
+      <h5>Consultas disponíveis:</h5>
+      <ul>
+        #{if consultas != null}
+          #{list items:consultas, as:'c'}
+            <li>
+                Especialidade: ${c.especialidade} <br>
+                Médico: ${c.medico} <br>
+                Data: ${c.data}<br>
+              <hr>
+            </li>
+          #{/list}
+        #{/if}
+        #{else}
+          <li>Ainda não há nenhuma consulta aqui</li>
+          <hr>
+        #{/else}
+      </ul>
+    </div>
+    
+    </div>
+    </body>
+    
+    

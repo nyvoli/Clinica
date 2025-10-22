@@ -39,7 +39,11 @@ public class Pacientes extends Controller {
 	        flash.error("Já existe um paciente cadastrado com este CPF");
 	        form(paciente);
 	    // se nenhum dos casos, está tudo certo
-	    } else{
+	    } else if (!paciente.cpf.matches("\\d+")) { 
+	    	flash.error("Insira um CPF válido");
+	    	form(paciente);
+	    }
+	    else{
 	            paciente.save();
 	            detalhar(paciente.id, null);
 	        }};
@@ -48,7 +52,7 @@ public class Pacientes extends Controller {
     
     public static void editar(Long id) {
     	Paciente paciente = Paciente.findById(id);
-    	renderTemplate("Pacientes/form.html", paciente);
+    	form(paciente);
     }
     
     
@@ -95,10 +99,16 @@ public class Pacientes extends Controller {
 
         while (cpf.length() < 11) { 
         	flash.error("CPF inválido");
-        	Atendentes.menu(null);}
+        	Atendentes.menu(null);
+        	}
         
+        while (!cpf.matches("\\d+")) { 
+	    	flash.error("Insira um CPF válido");
+	    	Atendentes.menu(null);
+	    }
         if (paciente == null) {
-            renderTemplate("Pacientes/form.html");
+        	flash.error("Este paciente não está cadastrado");
+            form(null);
         } else if (paciente.status == Status.INATIVO) {
             flash.error("Este paciente está desativado");
             Atendentes.menu(null);
