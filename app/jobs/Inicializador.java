@@ -33,6 +33,7 @@ public class Inicializador extends Job{
 			
 			Atendente atendente1 = new Atendente("Maria Clara", "m.clara@gmail.com", "1234");
 			atendente1.save();
+			
 			Administrador adm = new Administrador("Lucas Dantas", "lucasdantas@gmail.com", "1010");
 			adm.save();
 		}

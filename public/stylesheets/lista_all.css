@@ -43,3 +43,71 @@
     padding: 0.8rem 6rem;
     text-align: center;
 }
+
+/* Container da tabela */
+.pacientes-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    margin: 2rem 0;
+}
+
+.pacientes-container h1 {
+    color: #6A5ACD;
+    margin-bottom: 0.5rem;
+}
+
+.pacientes-info {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+/* Estilo da tabela */
+.tabela-pacientes {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    text-align: center; /* centraliza todos os elementos */
+    border: 2px solid #4B0082; /* borda externa roxa escura */
+}
+
+.tabela-pacientes th, 
+.tabela-pacientes td {
+    padding: 12px 15px;
+    border: 1px solid #4B0082; /* bordas internas roxas escuras */
+}
+
+.tabela-pacientes th {
+    background-color: #6A5ACD;
+    color: white;
+    font-weight: 600;
+}
+
+.tabela-pacientes tr:nth-child(even) {
+    background-color: #f9f6ff;
+}
+
+.tabela-pacientes tr:hover {
+    background-color: #e6e0ff;
+}
+
+.tabela-pacientes a {
+    color: #6A5ACD;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.tabela-pacientes a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .tabela-pacientes th, 
+    .tabela-pacientes td {
+        padding: 10px 8px;
+        font-size: 0.9rem;
+    }
+}
+
