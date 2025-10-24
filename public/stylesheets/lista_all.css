@@ -1,66 +1,45 @@
-.body {
-	background-color: #f0eefa;
-}
-
-.pacientes-container {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.08);
-}
-
-.pacientes-container h1 {
-  color: #6A5ACD;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.pacientes-info {
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 2rem;
-}
-
-.tabela-pacientes {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.tabela-pacientes th,
-.tabela-pacientes td {
-  border: 1px solid #d8d1ff;
-  padding: 12px;
-  text-align: left;
-}
-
-.tabela-pacientes thead {
-  background-color: #f5f5ff;
-}
-
-.tabela-pacientes tr:nth-child(even) {
-  background-color: #f0eefa;
-}
-
-.tabela-pacientes th {
-  color: #4B0082;
-}
-
-.btn-voltar {
-  margin-top: 2rem;
-  background-color: #6A5ACD;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
+/*icon do olho para revelar a senha */
+.input-with-icon {
+  position: relative;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  transition: background-color 0.3s;
+  width: 100%;
 }
 
-.btn-voltar:hover {
-  background-color: #5a4bbd;
+.input-with-icon .form-control {
+  padding-right: 42px;
+  box-sizing: border-box;
+}
+
+.input-with-icon .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.05rem;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+.input-with-icon .form-control:focus + .toggle-password,
+.input-with-icon .toggle-password:hover {
+  color: #222;
+}
+
+
+.botoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.botoes input[type="submit"], 
+.botoes button {
+    flex: 1;
+    padding: 0.8rem 6rem;
+    text-align: center;
 }

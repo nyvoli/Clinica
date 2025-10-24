@@ -1,48 +1,39 @@
-#{extends 'main.html' /}
-
-#{if paciente}
-#{set title:'CNM - Edição de paciente' /}
-#{/if}
-#{else}
-#{set title:'CNM - Cadastro de paciente' /}
+#{extends 'main.html' /} #{if paciente} #{set title:'CNM - Edição de
+paciente' /} #{/if} #{else} #{set title:'CNM - Cadastro de paciente' /}
 #{/else}
 <body class="body">
 
-<div class="cont-det">
-    <br><br>
-	<h1 class="cads">Preencha a ficha:</h1>
-	<hr>
-    <form action="/pacientes/salvar" method="post">
-	<input type="hidden" name="paciente.id" value="${paciente?.id}" />
+	<div class="cont-det">
+		<br>
+		<br>
+		<h1 class="cads">Preencha a ficha:</h1>
+		<hr>
+		<form action="/pacientes/salvar" method="post">
+			<input type="hidden" name="paciente.id" value="${paciente?.id}" /> <label
+				for="exampleInput">Nome:</label> <input type="text"
+				class="form-control" value="${paciente?.nome}" name="paciente.nome"
+				placeholder="Seu nome"> <br> <label for="exampleInput">CPF:</label>
+			<input type="text" name="paciente.cpf" class="form-control"
+				value="${paciente?.cpf}" maxlength="11"
+				placeholder="Seu CPF (apenas dígitos)"> <br> <label
+				for="exampleInput">Data de Nascimento:</label> <input type="date"
+				class="form-control" name="paciente.dataNascimento"
+				value="${paciente?.dataNascimento?.format('yyyy-MM-dd')}"> <br>
 
-      <label for="exampleInput">Nome:</label>
-      <input type="text" class="form-control" value="${paciente?.nome}" name="paciente.nome" placeholder="Seu nome">
-      <br>
-	  
-	  <label for="exampleInput">CPF:</label>
-	  <input type="text" name="paciente.cpf" class="form-control" value="${paciente?.cpf}" maxlength="11"  placeholder="Seu CPF (apenas dígitos)">
-	  <br>
-	  
-      <label for="exampleInput">Data de Nascimento:</label>
-      <input type="date" class="form-control" name="paciente.dataNascimento" value="${paciente?.dataNascimento?.format('yyyy-MM-dd')}">
-      <br>
+			<label for="exampleInput">Número de Telefone</label> <input
+				type="text" class="form-control" maxlength="11"
+				value="${paciente?.telefone}" name="paciente.telefone"
+				placeholder="Número de telefone (apenas dígitos)"> <br>
 
-	  <label for="exampleInput">Número de Telefone</label>
-      <input type="text" class="form-control" maxlength="11" value="${paciente?.telefone}" name="paciente.telefone" placeholder="Número de telefone (apenas dígitos)">
-	  <br>
-		
-		
-      <label>Convênio:</label>
-	  <select class="form-select" name="paciente.convenio">
-	  <option value="HapVida" ${paciente?.convenio == 'HapVida' ? 'selected' : ''}>HapVida</option>
-	  <option value="UniMed" ${paciente?.convenio == 'UniMed' ? 'selected' : ''}>UniMed</option>
-	  <option value="Particular" ${paciente?.convenio == 'Particular' ? 'selected' : ''}>Particular</option>
-	  </select>
 
-	  <br>
- 	  <input type="submit" value="Cadastrar" class="botao">  
-</form>
-	
-</div>
+			<label>Convênio:</label> <select class="form-select"
+				name="paciente.convenio">
+				<option value="HapVida" ${paciente?.convenio=='HapVida' ? 'selected' : ''}>HapVida</option>
+				<option value="UniMed" ${paciente?.convenio=='UniMed' ? 'selected' : ''}>UniMed</option>
+				<option value="Particular" ${paciente?.convenio=='Particular' ? 'selected' : ''}>Particular</option>
+			</select> <br> <input type="submit" value="Cadastrar" class="botao">
+		</form>
+
+	</div>
 
 </body>

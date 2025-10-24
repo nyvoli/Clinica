@@ -1,29 +1,30 @@
-#{extends 'main.html' /}
-#{set title:'CNM Medical Center' /}
-<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/lista_all.css'}">
+#{extends 'main.html' /} #{set title:'CNM Medical Center' /}
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/lista_all.css'}">
 
 <body class="body">
-<div class="pacientes-container">
-  <h1>Pacientes Cadastrados</h1>
-  <p class="pacientes-info">Exibindo total de: ${pacientes?.size()} pacientes</p>
+	<div class="pacientes-container">
+		<h1>Pacientes Cadastrados</h1>
+		<p class="pacientes-info">Exibindo total de: ${pacientes?.size()}
+			pacientes</p>
 
-  <table class="tabela-pacientes">
-    <thead>
-      <tr>
-        <th>Nome do Paciente</th>
-        <th>Telefone</th>
-        <th>CPF</th>
-      </tr>
-    </thead>
-    <body>
-      #{list items:pacientes, as:'paciente'}
-        <tr>
-          <td>${paciente.nome} | <a href="@{Pacientes.detalhar(paciente.id)}">Exibir paciente</a></td>
-          <td>${paciente.telefone}</td>
-          <td>${paciente.cpf}</td>
-        </tr>
-      #{/list}
-    </body>
-  </table>
+		<table class="tabela-pacientes">
+			<thead>
+				<tr>
+					<th>Nome do Paciente</th>
+					<th>Telefone</th>
+					<th>CPF</th>
+				</tr>
+			</thead>
+			<body>#{list items:pacientes, as:'paciente'}
+			<tr>
+				<td>${paciente.nome} | <a
+					href="@{Pacientes.detalhar(paciente.id)}">Exibir paciente</a></td>
+				<td>${paciente.telefone}</td>
+				<td>${paciente.cpf}</td>
+			</tr>
+			#{/list}
+</body>
+</table>
 </div>
 </body>

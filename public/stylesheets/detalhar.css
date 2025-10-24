@@ -3,52 +3,64 @@
 }
 
 .layout {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 2rem;
-  flex-wrap: wrap;
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 2rem;
+	flex-wrap: wrap;
 }
 
 .coluna {
-  flex: 1;
-  min-width: 300px;
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.08);
-  box-sizing: border-box;
+	flex: 1;
+	min-width: 300px;
+	background-color: white;
+	padding: 1.5rem;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+	box-sizing: border-box;
 }
 
 .coluna h4, .coluna h5 {
-  color: #6A5ACD;
-  margin-bottom: 1rem;
+	color: #6A5ACD;
+	margin-bottom: 1rem;
 }
 
 ul {
-  padding-left: 1rem;
+	padding-left: 1rem;
 }
 
 input[type="submit"], button {
-  background-color: #6A5ACD;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  margin-top: 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
+	background-color: #6A5ACD;
+	color: white;
+	border: none;
+	padding: 0.5rem 1rem;
+	margin-top: 0.5rem;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 input[type="text"] {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  box-sizing: border-box;
+	width: 100%;
+	padding: 0.5rem;
+	margin-top: 0.5rem;
+	margin-bottom: 1rem;
+	box-sizing: border-box;
 }
 
-@media (max-width: 992px) {
-  .layout-3colunas {
-    flex-direction: column;
-  }
+.botoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.botoes input[type="submit"], 
+.botoes button {
+    flex: 1;
+    padding: 0.8rem 6rem;
+    text-align: center;
+}
+@media ( max-width : 992px) {
+	.layout-3colunas {
+		flex-direction: column;
+	}
 }

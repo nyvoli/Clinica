@@ -1,27 +1,73 @@
-#{extends 'main.html' /}
+#{extends 'main.html' /} #{set title:'Entrar como Atendente ou
+Administrador' /}
 
-#{set title:'Entrar como Atendente ou Administrador' /}
+<!-- bootstrap -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/lista_all.css'}">
+
 <body class="body">
+	<div class="cont-det">
+		<br>
+		<br>
+		<h1 class="cads">Preencha a ficha:</h1>
+		<hr>
+		<form action="/logins/logar" method="post">
 
-<div class="cont-det">
-    <br><br>
-	<h1 class="cads">Preencha a ficha:</h1>
-	<hr>
-    <form action="/logins/logar" method="post">
+			<label for="email">Email:</label> <input type="text"
+				class="form-control" name="email" id="email" placeholder="Email">
+			<br> <label for="senha">Senha:</label>
+			<div class="input-with-icon">
+				<input type="password" name="senha" id="senha" class="form-control"
+					placeholder="Senha" autocomplete="current-password"> <i
+					id="toggleSenha" class="bi bi-eye-slash toggle-password"
+					role="button" aria-label="Mostrar senha" aria-pressed="false"
+					tabindex="0"></i>
+			</div>
+			<br> <input type="submit" value="Entrar" class="botao">
+		</form>
+	</div>
 
-      <label for="exampleInput">Email:</label>
-      <input type="text" class="form-control" name="email" placeholder="Email">
-      <br>
-	  
-	  <label for="exampleInput">Senha:</label>
-	  <input type="password" name="senha" class="form-control" placeholder="Senha">
-	  <br>
-	  
- 	  <input type="submit" value="Entrar" class="botao">
- 	  
-	  
-	  
-</form>
-</div>
+	<!-- script do bootstrap -->
+	<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const inputSenha = document.getElementById('senha');
+  const toggle = document.getElementById('toggleSenha');
+
+  if (!inputSenha || !toggle) return;
+
+  function setIcon(isVisible) {
+    if (isVisible) {
+      toggle.classList.remove('bi-eye-slash');
+      toggle.classList.add('bi-eye');
+      toggle.setAttribute('aria-pressed', 'true');
+      toggle.setAttribute('aria-label', 'Ocultar senha');
+    } else {
+      toggle.classList.remove('bi-eye');
+      toggle.classList.add('bi-eye-slash');
+      toggle.setAttribute('aria-pressed', 'false');
+      toggle.setAttribute('aria-label', 'Mostrar senha');
+    }
+  }
+
+  function toggleSenha() {
+    const isPassword = inputSenha.getAttribute('type') === 'password';
+    inputSenha.setAttribute('type', isPassword ? 'text' : 'password');
+    setIcon(isPassword);
+  }
+
+  toggle.addEventListener('click', toggleSenha);
+
+  toggle.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleSenha();
+    }
+  });
+  setIcon(false);
+});
+</script>
+
 </body>
-
