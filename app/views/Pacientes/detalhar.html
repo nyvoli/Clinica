@@ -10,7 +10,7 @@
       <ul>
         #{list items:paciente.consultas, as:'consulta'}
           <li>
-            <form action="@{Consultas.remover}" method="GET">
+            <form action="@{Consultas.remover}" method="Post">
               <input type="hidden" name="consultaId" value="${consulta.id}">
               <input type="hidden" name="pacienteId" value="${paciente.id}">
               Especialidade: ${consulta.especialidade} <br>

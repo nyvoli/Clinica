@@ -15,7 +15,7 @@
         <th>CPF</th>
       </tr>
     </thead>
-    <tbody>
+    <body>
       #{list items:pacientes, as:'paciente'}
         <tr>
           <td>${paciente.nome} | <a href="@{Pacientes.detalhar(paciente.id)}">Exibir paciente</a></td>
@@ -23,7 +23,7 @@
           <td>${paciente.cpf}</td>
         </tr>
       #{/list}
-    </tbody>
+    </body>
   </table>
 </div>
 </body>
