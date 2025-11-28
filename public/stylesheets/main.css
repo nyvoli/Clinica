@@ -1,11 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 .body {
-	background-color: #f0eefa;
+	background-color: #ffffff;
 }
 
 .cads, .detalhar {
     color: #6A5ACD;
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
 }
-
+#nots{
+    background-color: #6A5ACD;
+    border-radius: 4px;
+    padding: 10px;
+    flex-direction: column;
+    width: 100%;
+    left: 50%;
+    box-shadow: #7868e2;     
+}
+h3{
+    color: white;
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+}
+t1{
+    color: white;
+    font-family: "Nunito", sans-serif;
+    font-weight: light;
+}
 .botao {
     background-color: #6A5ACD;
     color: white;
@@ -23,13 +44,7 @@
   background-color: #5a4bbd;
 }
 
-.form-group, .cont-det {
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-	/*background-color: #3f367b;*/
-}
+
 
 .bot-novo {
     background-color: #6A5ACD;
