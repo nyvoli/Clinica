@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-.body {
+body {
 	background-color: #ffffff;
 }
-
-.cads, .detalhar {
+#content{}
+#cads, .detalhar {
     color: #6A5ACD;
     font-family: "Nunito", sans-serif;
     font-weight: bold;
@@ -39,12 +39,14 @@ t1{
     cursor: pointer;
     text-transform: uppercase;
 }
+#menu {
+    display: flex;
+    justify-content: space-between;
+}
 
 .botao:hover {
   background-color: #5a4bbd;
 }
-
-
 
 .bot-novo {
     background-color: #6A5ACD;
