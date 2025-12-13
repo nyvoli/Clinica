@@ -1,6 +1,8 @@
-#{extends 'main.html' /} #{if paciente} #{set title:'CNM - Edição de
-Atendente' /} #{/if} #{else} #{set title:'CNM - Cadastro de Atendente'
-/} #{/else}
+#{extends 'main.html' /} 
+#{if paciente} <title>Edição</title> 
+#{/if} #{else} 
+<title>Cadastro</title>
+#{/else}
 
 <!-- bootstrap-->
 <link rel="stylesheet"
@@ -11,9 +13,19 @@ Atendente' /} #{/if} #{else} #{set title:'CNM - Cadastro de Atendente'
 
 <body class="body">
 
+  <div id="menu">
+    <img src="https://i.pinimg.com/736x/ce/65/0a/ce650a264de688cd9426fa70a65cb763.jpg" width="150px">
+	<h4 id="cads">
+		Olá, ${session['userName']}
+		<t>(${session['cargo']})</t>
+		<t> <a href="@{Logins.logout}">Sair</a></t>
+		<t> <a href="@{Pacientes.menu}">Menu</a></t>
+	</h4>
+</div>
+
 	<div class="cont-det">
 		<br> <br>
-		<h1 class="cads">Preencha a ficha:</h1>
+		<h1 id="cads">Preencha a ficha:</h1>
 		<hr>
 		<form action="@{Atendentes.cadastrar}" method="post">
 			<input type="hidden" name="atendente.id" value="${atendente?.id}" />
@@ -39,9 +51,7 @@ Atendente' /} #{/if} #{else} #{set title:'CNM - Cadastro de Atendente'
 			<br> <input type="submit" value="Cadastrar" class="botao">
 		</form>
 
-		<a href="@{Administradores.menu}"> <br>
-			<button class="botao">Voltar</button>
-		</a>
+
 	</div>
 
 	<!-- script do ícone da senha -->

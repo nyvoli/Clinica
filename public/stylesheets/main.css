@@ -2,20 +2,50 @@
 body {
 	background-color: #ffffff;
 }
-#content{}
+.content{
+    display: flex;
+    align-items: center;
+}
 #cads, .detalhar {
-    color: #6A5ACD;
+    color: #55127c;
     font-family: "Nunito", sans-serif;
     font-weight: bold;
 }
+a:link, a:visited, a:active{
+    color: #8a1fc9;
+}
+a:hover{
+    color: #360b4e;
+}
+.cont-det{
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content-log{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+}
+#imagem{
+    border-radius: 20px; 
+    margin: 20px;
+}
 #nots{
-    background-color: #6A5ACD;
+    background-color: #6a2797;
     border-radius: 4px;
     padding: 10px;
     flex-direction: column;
     width: 100%;
     left: 50%;
-    box-shadow: #7868e2;     
+    box-shadow: #5c218b;     
 }
 h3{
     color: white;
@@ -27,8 +57,14 @@ t1{
     font-family: "Nunito", sans-serif;
     font-weight: light;
 }
+txt{
+    color: black;
+    font-family: "Nunito", sans-serif;
+    font-weight: light;
+    font-size: 20px;
+}
 .botao {
-    background-color: #6A5ACD;
+    background-color: #4c1c79;
     color: white;
     border-radius: 5px;
     align-content: center;
@@ -42,14 +78,15 @@ t1{
 #menu {
     display: flex;
     justify-content: space-between;
+     align-items: center;
 }
 
 .botao:hover {
-  background-color: #5a4bbd;
+  background-color: #6a2797;
 }
 
 .bot-novo {
-    background-color: #6A5ACD;
+    background-color: #6a2797;;
     color: white;
     border-radius: 5px;
     align-content: center;

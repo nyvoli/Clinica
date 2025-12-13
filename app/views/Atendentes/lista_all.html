@@ -1,4 +1,14 @@
-#{extends 'main.html' /} #{set title:'CNM Medical Center' /}
+#{extends 'main.html' /} 
+<title>Pacientes Cadastrados</title>
+<div id="menu">
+    <img src="https://i.pinimg.com/736x/ce/65/0a/ce650a264de688cd9426fa70a65cb763.jpg" width="150px">
+	<h4 id="cads">
+		Olá, ${session['userName']}
+		<t>(${session['cargo']})</t>
+		<t> <a href="@{Logins.logout}">Sair</a></t>
+		<t> <a href="@{Pacientes.menu}">Menu</a></t>
+	</h4>
+</div>
 <link rel="stylesheet" media="screen"
 	href="@{'/public/stylesheets/lista_all.css'}">
 

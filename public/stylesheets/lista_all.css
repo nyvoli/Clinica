@@ -22,7 +22,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #333;
+  color: #360b4e;;
 }
 
 .input-with-icon .form-control:focus + .toggle-password,
@@ -54,7 +54,7 @@
 }
 
 .pacientes-container h1 {
-    color: #6A5ACD;
+    color: #6a2797;
     margin-bottom: 0.5rem;
 }
 
@@ -69,17 +69,17 @@
     border-collapse: collapse;
     font-family: Arial, sans-serif;
     text-align: center; /* centraliza todos os elementos */
-    border: 2px solid #4B0082; /* borda externa roxa escura */
+    border: 2px solid #6a2797; 
 }
 
 .tabela-pacientes th, 
 .tabela-pacientes td {
     padding: 12px 15px;
-    border: 1px solid #4B0082; /* bordas internas roxas escuras */
+    border: 1px solid #000000; 
 }
 
 .tabela-pacientes th {
-    background-color: #6A5ACD;
+    background-color: #6a2797;
     color: white;
     font-weight: 600;
 }
@@ -93,7 +93,7 @@
 }
 
 .tabela-pacientes a {
-    color: #6A5ACD;
+    color: #6a2797;
     text-decoration: none;
     font-weight: 500;
 }

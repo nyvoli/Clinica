@@ -21,7 +21,7 @@
 }
 
 .coluna h4, .coluna h5 {
-	color: #6A5ACD;
+	color: #55127c;
 	margin-bottom: 1rem;
 }
 
@@ -30,7 +30,7 @@ ul {
 }
 
 input[type="submit"], button {
-	background-color: #6A5ACD;
+	background-color: #4c1c79;;
 	color: white;
 	border: none;
 	padding: 0.5rem 1rem;

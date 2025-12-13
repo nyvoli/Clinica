@@ -1,20 +1,26 @@
-#{extends 'main.html' /} #{set title:'CNM - Menu' /}
+#{extends 'main.html' /} 
+<title>Menu</title>
 <link rel="stylesheet" media="screen"
 	href="@{'/public/stylesheets/detalhar.css'}">
 
 <body class="body">
-	<h4 class="cads">
+	
+	<div id="menu">
+    <img src="https://i.pinimg.com/736x/ce/65/0a/ce650a264de688cd9426fa70a65cb763.jpg" width="150px">
+	<h4 id="cads">
 		Olá, ${session['userName']}
 		<t>(${session['cargo']})</t>
 		<t> <a href="@{Logins.logout}">Sair</a></t>
+		<t> <a href="@{Pacientes.menu}">Menu</a></t>
 	</h4>
-
+</div>
+	
 	<div class="layout">
 		<hr>
 		<div class="coluna">
 			<!-- Buscar por pacientes -->
 			<form action="@{Pacientes.verificacao}" method="POST">
-				<h3 class="cads">Localize o paciente</h3>
+				<h3 id="cads">Localize o paciente</h3>
 				<hr>
 				<label for="cpf">Informe o CPF do paciente:</label> <br> <input
 					type="text" class="form-control" name="cpf" maxlength="11"
@@ -27,7 +33,7 @@
 		<div class="coluna">
 			<!-- Ver todos os pacientes cadastrados -->
 			<form action="@{Atendentes.lista_all}" method="POST">
-				<h3 class="cads">Ver pacientes cadastrados</h3>
+				<h3 id="cads">Ver pacientes cadastrados</h3>
 				<hr>
 				<button type="submit" class="botao">Exibir Pacientes</button>
 			</form>
@@ -36,7 +42,7 @@
 		<div class="coluna">
 			<!-- Buscar por consultas -->
 			<form action="@{Atendentes.menu}" method="POST">
-				<h3 class="cads">Ver consultas disponíveis</h3>
+				<h3 id="cads">Ver consultas disponíveis</h3>
 				<hr>
 				<label for="cpf">Buscar por nome ou especialidade</label> <br>
 				<input type="text" class="form-control" name="busca" maxlength="11"
@@ -46,7 +52,7 @@
 				<!-- Lógica do BUSCAR -->
 				<ul>
 					#{if consultas != null && !consultas.isEmpty()}
-					<h3 class="cads">Consultas Disponíveis:</h3>
+					<h3 id="cads">Consultas Disponíveis:</h3>
 					#{list items:consultas, as:'consulta'}
 					<li>Especialidade: ${consulta.especialidade} <br> Médico:
 						${consulta.medico} <br> Data: ${consulta.data}<br>
@@ -57,9 +63,9 @@
 		<div class="coluna">
 			<!-- Cadastrar paciente novo -->
 			<form action="@{Pacientes.form}">
-				<h3 class="cads">Cadastrar Paciente</h3>
+				<h3 id="cads">Cadastrar Paciente</h3>
 				<hr>
-				<button type="submit" class="botao">Cadastrar</button>
+				<button type="submit" class="botao">Cadastrar Novo</button>
 			</form>
 		</div>
 	</div>

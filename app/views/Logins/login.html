@@ -1,6 +1,5 @@
-#{extends 'main.html' /} #{set title:'Entrar como Atendente ou
-Administrador' /}
-
+#{extends 'main.html' /}
+<title>Login</title>
 <!-- bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -9,11 +8,14 @@ Administrador' /}
 	href="@{'/public/stylesheets/lista_all.css'}">
 
 <body class="body">
-	<div class="cont-det">
-		<br>
-		<br>
-		<h1 class="cads">Preencha a ficha:</h1>
-		<hr>
+  <div id="menu">
+    <img src="https://i.pinimg.com/736x/ce/65/0a/ce650a264de688cd9426fa70a65cb763.jpg" width="150px">
+    <br></div>
+	<div class="content-log">
+    <img id="imagem" src="https://media.istockphoto.com/id/2151967049/photo/senior-medical-check-up.jpg?s=612x612&w=0&k=20&c=GA9LTs9APi5QDwbvMLIi1iyKZQxE5CjTQY6qB-0HHso=" height="300px">
+		
+    <div id="log">
+		<h1 id="cads">Preencha a ficha:</h1>
 		<form action="/logins/logar" method="post">
 
 			<label for="email">Email:</label> <input type="text"
@@ -28,6 +30,7 @@ Administrador' /}
 			</div>
 			<br> <input type="submit" value="Entrar" class="botao">
 		</form>
+    </div>
 	</div>
 
 	<!-- script do bootstrap -->

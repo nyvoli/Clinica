@@ -22,6 +22,15 @@ public class Pacientes extends Controller {
 		renderTemplate("pacientes/form.html", paciente);
 	}
 
+	public static void menu(){
+		String cargo = session.get("cargo");
+
+		if(cargo.equals("ADMINISTRADOR")){
+			renderTemplate("Administradores/menu.html");
+		} else if(cargo.equals("ATENDENTE")){
+			renderTemplate("Atendentes/menu.html");
+		}
+	}
 	public static void salvar(Paciente paciente) {
 		// para verificar se já há algum paciente com esse CPF no banco de dados
 		Paciente cpfExiste = Paciente.find("byCpf", paciente.cpf).first();

@@ -1,12 +1,21 @@
-#{extends 'main.html' /} #{set title:'CNM Medical Center' /}
+#{extends 'main.html' /} 
+<title>Menu</title>
 <link rel="stylesheet" media="screen"
 	href="@{'/public/stylesheets/detalhar.css'}">
-<h4 class="cads">
-	Olá, ${session['userName']}
-	<t>(${session['cargo']})</t>
-	<t> <a href="@{Logins.logout}">Sair</a></t>
-</h4>
+
+
+
 <body class="body">
+
+	<div id="menu">
+    <img src="https://i.pinimg.com/736x/ce/65/0a/ce650a264de688cd9426fa70a65cb763.jpg" width="150px">
+	<h4 id="cads">
+		Olá, ${session['userName']}
+		<t>(${session['cargo']})</t>
+		<t> <a href="@{Logins.logout}">Sair</a></t>
+		<t> <a href="@{Pacientes.menu}">Menu</a></t>
+	</h4>
+</div>
 	<div class="layout">
 
 		<hr>
@@ -77,8 +86,7 @@
 			</ul>
 			#{/if} #{else}
 			<li>Ainda não há nenhum paciente aqui</li> #{/else} </br> <a
-				href="@{Pacientes.form()}"><button class="botao">Cadastrar
-					Novo</button></a>
+				href="@{Pacientes.form()}"><button class="botao">Cadastrar Novo</button></a>
 		</div>
 	</div>
 </body>
