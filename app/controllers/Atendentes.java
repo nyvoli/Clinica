@@ -35,7 +35,7 @@ public class Atendentes extends Controller {
 		Atendente atendente = Atendente.findById(id);
 		atendente.delete();
 		flash.success("O atendente foi excluído com sucesso");
-		Administradores.menu(null, null, null);
+		Administradores.menu();
 	}
 
 	public static void cadastrar(Atendente atendente) {

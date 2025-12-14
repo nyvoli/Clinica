@@ -1,18 +1,20 @@
-# Routes
-# This file defines all application routes (Higher priority routes first)
-# ~~~~
-
 # Home page
-GET     /                                       Application.index
+GET     /                         Application.index
 
 # LOGIN
-GET     /                                       Application.login
+GET     /login                    Application.login
 
 # Ignore favicon requests
-GET     /favicon.ico                            404
+GET     /favicon.ico              404
 
-# Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
+# Static files
+GET     /public/                  staticDir:public
 
-# Catch all
-*       /{controller}/{action}                  {controller}.{action}
+# Atendentes
+GET     /Atendentes/detalhar/{id} Atendentes.detalhar
+
+# Atendentes
+GET     /Pacientes/detalhar/{id} Pacientes.detalhar
+
+# Catch all 
+*       /{controller}/{action}    {controller}.{action}
