@@ -1,13 +1,11 @@
-#{extends 'main.html' /} 
+#{extends 'main.html' /}
 <title>Menu</title>
 <link rel="stylesheet" media="screen"
 	href="@{'/public/stylesheets/detalhar.css'}">
 
-
-
 <body class="body">
 
-	<div id="menu">
+<div id="menu">
     <img src="https://i.pinimg.com/736x/ce/65/0a/ce650a264de688cd9426fa70a65cb763.jpg" width="150px">
 	<h4 id="cads">
 		Olá, ${session['userName']}
@@ -16,78 +14,135 @@
 		<t> <a href="@{Pacientes.menu}">Menu</a></t>
 	</h4>
 </div>
-	<div class="layout">
 
-		<hr>
-		<!-- Buscar Atendentes -->
-		<div class="coluna">
-			<h4>Buscar atendentes</h4>
-			<form action="@{Administradores.menu}" method="GET">
-				<input type="text" name="buscaAtd" value="${buscaAtd}"
-					class="form-control" placeholder="Digite o nome ou e-mail" /> <br>
-				<button type="submit" class="botao">Buscar Atendentes</button>
-				<br> <br>
-			</form>
+<div class="layout">
+<hr>
 
-			<h5>Atendentes encontrados:</h5>
-			<ul>
-				#{if atendentes != null} #{list items:atendentes, as:'a'}
-				<li>${a.nome} | <a href="@{Atendentes.detalhar(a.id)}">Exibir
-						Atendente</a></li> ${a.email}
-				<hr>
-				#{/list}
-			</ul>
-			#{/if} #{else}
-			<li>Ainda não há nenhum atendente aqui</li> #{/else} </br> <a
-				href="@{Atendentes.form()}"><button class="botao">Cadastrar
-					Novo</button></a>
-		</div>
+<!-- Buscar Atendentes -->
+<div class="coluna">
+	<h4>Buscar atendentes</h4>
 
-		<!-- Buscar Consultas -->
-		<div class="coluna">
-			<h4>Buscar Consultas</h4>
-			<form action="@{Administradores.menu}">
-				<input type="text" name="buscaConsulta" value="${buscaConsulta}"
-					class="form-control" placeholder="Busque por especialidades" /> <br>
-				<button type="submit" class="botao">Buscar Consultas</button>
-				<br> <br>
-			</form>
-			<h5>Consultas disponíveis:</h5>
-			<ul>
-				#{if consultas != null} #{list items:consultas, as:'c'}
-				<li>Especialidade: ${c.especialidade} <br> Médico:
-					${c.medico} <br> Data: ${c.data}<br>
-					<hr>
-				</li> #{/list} #{/if} #{else}
-				<li>Ainda não há nenhuma consulta aqui</li>
-				<hr>
-				#{/else}
-			</ul>
-		</div>
+	<input type="text" id="buscaAtd" class="form-control"
+	       placeholder="Digite o nome ou e-mail" />
+	<br>
+	<button type="button" id="btnBuscaAtd" class="botao">
+		Buscar Atendentes
+	</button>
 
-		<!-- Buscar Pacientes -->
-		<div class="coluna">
-			<h4>Buscar Pacientes</h4>
-			<form action="@{Administradores.menu}" method="GET">
-				<input type="text" name="buscaPaciente" value="${buscaPaciente}"
-					class="form-control" placeholder="Digite a especialidade ou médico" />
-				<br>
-				<button type="submit" class="botao">Buscar Pacientes</button>
-				<br> <br>
-			</form>
-			<h5>Pacientes encontrados:</h5>
-			<ul>
-				#{if pacientes != null} #{list items:pacientes, as:'p'}
-				<li>${p.nome} | <a href="@{Pacientes.detalhar(p.id)}">Exibir
-						Paciente</a></li>
-				<li>${p.cpf}</li>
-				</hr>
-				#{/list}
-			</ul>
-			#{/if} #{else}
-			<li>Ainda não há nenhum paciente aqui</li> #{/else} </br> <a
-				href="@{Pacientes.form()}"><button class="botao">Cadastrar Novo</button></a>
-		</div>
-	</div>
+	<h5>Atendentes encontrados:</h5>
+	<ul id="resultadoAtendentes"></ul>
+
+	<br>
+	<a href="@{Atendentes.form()}">
+		<button class="botao">Cadastrar Novo</button>
+	</a>
+</div>
+
+<!-- Buscar Consultas -->
+<div class="coluna">
+	<h4>Buscar Consultas</h4>
+
+	<input type="text" id="buscaConsulta" class="form-control"
+	       placeholder="Busque por especialidades" />
+	<br>
+	<button type="button" id="btnBuscaConsulta" class="botao">
+		Buscar Consultas
+	</button>
+
+	<h5>Consultas disponíveis:</h5>
+	<ul id="resultadoConsultas"></ul>
+</div>
+
+<!-- Buscar Pacientes -->
+<div class="coluna">
+	<h4>Buscar Pacientes</h4>
+
+	<input type="text" id="buscaPaciente" class="form-control"
+	       placeholder="Digite o nome ou CPF" />
+	<br>
+	<button type="button" id="btnBuscaPaciente" class="botao">
+		Buscar Pacientes
+	</button>
+
+	<h5>Pacientes encontrados:</h5>
+	<ul id="resultadoPacientes"></ul>
+
+	<br>
+	<a href="@{Pacientes.form()}">
+		<button class="botao">Cadastrar Novo</button>
+	</a>
+</div>
+</div>
+
+<!-- ajax/json -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$('#btnBuscaAtd').click(function () {
+    $.getJSON('@{Administradores.buscarAtendentesJson()}', {
+        buscaAtd: $('#buscaAtd').val()
+    }, function (dados) {
+
+        let html = '';
+
+        if (dados.length === 0) {
+            html = '<li>Nenhum atendente encontrado</li>';
+        } else {
+            $.each(dados, function (i, a) {
+                html += '<li>'
+                      + a.nome + ' | ' + a.email
+                      + ' <a href="/Atendentes/detalhar/' + a.id + '">Exibir</a>'
+                      + '</li><hr>';
+            });
+        }
+
+        $('#resultadoAtendentes').html(html);
+    });
+});
+
+$('#btnBuscaConsulta').click(function () {
+    $.getJSON('@{Administradores.buscarConsultasJson()}', {
+        buscaConsulta: $('#buscaConsulta').val()
+    }, function (dados) {
+
+        let html = '';
+
+        if (dados.length === 0) {
+            html = '<li>Nenhuma consulta encontrada</li>';
+        } else {
+            $.each(dados, function (i, c) {
+                html += '<li>'
+                      + 'Especialidade: ' + c.especialidade + '<br>'
+                      + 'Médico: ' + c.medico + '<br>'
+                      + 'Data: ' + c.data
+                      + '</li><hr>';
+            });
+        }
+
+        $('#resultadoConsultas').html(html);
+    });
+});
+
+$('#btnBuscaPaciente').click(function () {
+    $.getJSON('@{Administradores.buscarPacientesJson()}', {
+        buscaPaciente: $('#buscaPaciente').val()
+    }, function (dados) {
+
+        let html = '';
+
+        if (dados.length === 0) {
+            html = '<li>Nenhum paciente encontrado</li>';
+        } else {
+            $.each(dados, function (i, p) {
+                html += '<li>'
+                      + p.nome + ' | ' + p.cpf
+                      + ' <a href="/Pacientes/detalhar/' + p.id + '">Exibir</a>'
+                      + '</li><hr>';
+            });
+        }
+
+        $('#resultadoPacientes').html(html);
+    });
+});
+</script>
 </body>
-
