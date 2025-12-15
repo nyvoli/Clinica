@@ -38,6 +38,7 @@ public class Atendentes extends Controller {
 		Administradores.menu();
 	}
 
+	@AdmSecurity
 	public static void cadastrar(Atendente atendente) {
 		Atendente atdExistente = Atendente.find("byEmail", atendente.email).first();
 
